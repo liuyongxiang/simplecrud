@@ -16,6 +16,11 @@ public class HelloController {
         return "Hello world";
     }
 
+    @RequestMapping({"/","/index","/index.html"})
+    public String index(){
+        return "login";
+    }
+
     @RequestMapping("success")
     public String Success(Map<String,Object> map){
         map.put("hello","<h1>你好</h1>");

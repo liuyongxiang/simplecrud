@@ -1,6 +1,9 @@
 package com.learn.springboot.restfulcrud.config;
 
+import com.learn.springboot.restfulcrud.component.MyLocaleResolver;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -14,5 +17,24 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
 //        super.addViewControllers(registry);
         //浏览器发送/hello1请求来到success页面
         registry.addViewController("/hello1").setViewName("success");
+    }
+
+    @Bean//将组件注册在容器中
+    public WebMvcConfigurerAdapter webMvcConfigurerAdapter(){
+        WebMvcConfigurerAdapter adapter = new WebMvcConfigurerAdapter() {
+            @Override
+            public void addViewControllers(ViewControllerRegistry registry) {
+//                super.addViewControllers(registry);
+                registry.addViewController("/").setViewName("login");
+                registry.addViewController("/index").setViewName("login");
+                registry.addViewController("/index.html").setViewName("login");
+            }
+        };
+        return adapter;
+    }
+
+    @Bean
+    public LocaleResolver localeResolver(){
+        return new MyLocaleResolver();
     }
 }
