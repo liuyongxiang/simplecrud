@@ -37,7 +37,8 @@ public class EmployeeDao {
 		employee.setDepartment(departmentDao.getDepartment(employee.getDepartment().getId()));
 		employees.put(employee.getId(), employee);
 	}
-	
+
+	//返回所有员工的页面
 	public Collection<Employee> getAll(){
 		return employees.values();
 	}
