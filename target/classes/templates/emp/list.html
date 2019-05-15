@@ -73,32 +73,39 @@
 									<td th:text="${#dates.format(emp.birth,'yyyy-MM-dd HH:mm')}"></td>
 									<td>
 										<a class="btn btn-sm btn-primary" th:href="@{/emp/}+${emp.id}">编辑</a>
-										<form th:action="@{/emp/}+${emp.id}" method="post">
-											<input type="hidden" name="_method" value="delete" />
-											<button type="submit" class="btn btn-sm btn-danger">删除</button>
-										</form>
+										<button th:attr="del_uri=@{/emp/}+${emp.id}" class="btn btn-sm btn-danger deleteBtn">删除</button>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 				</main>
+				<form id="deleteEmpForm" if th:action="@{/emp/}+${emp.id}" method="post">
+					<input type="hidden" name="_method" value="delete" />
+				</form>
 			</div>
 		</div>
 
 		<!-- Bootstrap core JavaScript
     ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"></script>
-		<script type="text/javascript" src="asserts/js/popper.min.js"></script>
-		<script type="text/javascript" src="asserts/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/asserts/js/jquery-3.2.1.slim.min.js}"></script>
+		<script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/asserts/js/popper.min.js}"></script>
+		<script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/asserts/js/bootstrap.min.js}"></script>
 
 		<!-- Icons -->
-		<script type="text/javascript" src="asserts/js/feather.min.js"></script>
+		<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
 		<script>
 			feather.replace()
 		</script>
 
+		<script>
+			$(".deleteBtn").click(function () {
+			    //删除当前员工
+			    $("#deleteEmpForm").attr("action",$(this).attr("del_uri")).submit();
+				return false;
+            })
+		</script>
 		<!-- Graphs -->
 		<script type="text/javascript" src="asserts/js/Chart.min.js"></script>
 		<script>
