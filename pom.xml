@@ -25,6 +25,12 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- 引入其他的Servlet容器 -->
+        <!--<dependency>-->
+            <!--<artifactId>spring-boot-starter-jetty</artifactId>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+        <!--</dependency>-->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
